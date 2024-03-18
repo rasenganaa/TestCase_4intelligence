@@ -1,0 +1,225 @@
+{
+	"info": {
+		"_postman_id": "417f0b2a-bb37-4f8e-a117-968a52104cb4",
+		"name": "TestCase_4intelligence",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33500170"
+	},
+	"item": [
+		{
+			"name": "CRUD_Delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var template = `\r",
+							"<style type=\"text/css\">\r",
+							"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+							"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+							"    .tftable tr {background-color:#ffffff;}\r",
+							"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+							"    .tftable tr:hover {background-color:#e0ffff;}\r",
+							"</style>\r",
+							"\r",
+							"<table class=\"tftable\" border=\"1\">\r",
+							"    <tr>\r",
+							"        <th>Name</th>\r",
+							"        <th>Email</th>\r",
+							"        <th>Password</th>\r",
+							"        <th>Administrator</th>\r",
+							"        <th>ID</th>\r",
+							"    </tr>\r",
+							"    \r",
+							"    {{#each response.usuarios}}\r",
+							"        <tr>\r",
+							"            <td>{{nome}}</td>\r",
+							"            <td>{{email}}</td>\r",
+							"            <td>{{password}}</td>\r",
+							"            <td>{{administrador}}</td>\r",
+							"            <td>{{_id}}</td>\r",
+							"        </tr>\r",
+							"    {{/each}}\r",
+							"</table>\r",
+							"`;\r",
+							"\r",
+							"function constructVisualizerPayload() {\r",
+							"    return {response: pm.response.json()}\r",
+							"}\r",
+							"\r",
+							"pm.visualizer.set(template, constructVisualizerPayload());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://serverest.dev/usuarios/dIHTEQw7JDWV4Hzb",
+					"protocol": "https",
+					"host": [
+						"serverest",
+						"dev"
+					],
+					"path": [
+						"usuarios",
+						"dIHTEQw7JDWV4Hzb"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CRUD_Read_All",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://serverest.dev/usuarios",
+					"protocol": "https",
+					"host": [
+						"serverest",
+						"dev"
+					],
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CRUD_Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n    \"nome\": \"Ana Silva\",\r\n    \"email\": \"ana@silva.com\",\r\n    \"password\": \"ana123\",\r\n    \"administrador\": \"false\"\r\n     }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://serverest.dev/usuarios",
+					"protocol": "https",
+					"host": [
+						"serverest",
+						"dev"
+					],
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CRUD_Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Ana Silva\",\r\n    \"email\": \"ana.silva@novodominio.com\",\r\n    \"password\": \"novaSenha\",\r\n    \"administrador\": \"true\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://serverest.dev/usuarios/dIHTEQw7JDWV4Hzb",
+					"protocol": "https",
+					"host": [
+						"serverest",
+						"dev"
+					],
+					"path": [
+						"usuarios",
+						"dIHTEQw7JDWV4Hzb"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CRUD_Read_Tester",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://serverest.dev/usuarios/dIHTEQw7JDWV4Hzb",
+					"protocol": "https",
+					"host": [
+						"serverest",
+						"dev"
+					],
+					"path": [
+						"usuarios",
+						"dIHTEQw7JDWV4Hzb"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"pm.test(\"Create a new resource\", function () {\r",
+					"    pm.sendRequest({\r",
+					"        url: pm.variables.get(\"base_url\") + \"/usarios\",\r",
+					"        method: 'POST',\r",
+					"        header: {\r",
+					"            'Content-Type': 'application/json'\r",
+					"        },\r",
+					"        body: {\r",
+					"            mode: 'raw',\r",
+					"            raw: JSON.stringify({\r",
+					"                nome: \"Ana Silva\",\r",
+					"                email: \"ana@silva.com\",\r",
+					"                password: \"ana123\",\r",
+					"                administrador: \"false\"\r",
+					"            })\r",
+					"        }\r",
+					"    }, function (err, res) {\r",
+					"        pm.response.to.have.status(201);\r",
+					"        pm.response.to.have.jsonBody({\r",
+					"            message: \"Cadastro realizado com sucesso\"\r",
+					"        });\r",
+					"    });\r",
+					"});"
+				]
+			}
+		}
+	]
+}
